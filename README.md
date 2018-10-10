@@ -1,2 +1,2 @@
 # IB-Method-in-OpenFOAM-
-To simulate elastic bodies immersed in incompressible fluids in OpenFOAM using Immersed Boundary Method
+To simulate elastic bodies immersed in incompressible fluid in OpenFOAM using Immersed Boundary Method
