@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+# source OpenFoam location separately
+
+# compile ib function object
+cd immerseredBodyFunctionObject
+wmake libso
+cd ..
+
+# compile testing solver
+cd ibFoam
+wmake
+cd ..
+
+

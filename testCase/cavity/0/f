@@ -22,13 +22,12 @@ boundaryField
 {
     movingWall
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            zeroGradient;
     }
 
     fixedWalls
     {
-        type            noSlip;
+        type           zeroGradient;
     }
 
     frontAndBack

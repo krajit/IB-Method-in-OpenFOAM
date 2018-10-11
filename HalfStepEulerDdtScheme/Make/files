@@ -1,0 +1,3 @@
+HalfStepEulerDdtSchemes.C
+
+LIB = $(FOAM_USER_LIBBIN)/libHalfStepEulerDdtSchemes
