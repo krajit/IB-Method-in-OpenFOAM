@@ -7,7 +7,7 @@
 // if predictorOrCorrector.value() > 0 , it is corrector step
 
 {
-    dimensionedScalar   predictorOrCorrector("predictorOrCorrector", -1);
+    dimensionedScalar   predictorOrCorrector("predictorOrCorrector", 1);
 
     fvVectorMatrix UEqn
         (
@@ -66,6 +66,5 @@
         U = HbyA - rAU*fvc::grad(p);
         U.correctBoundaryConditions();
     }
-
 
 }

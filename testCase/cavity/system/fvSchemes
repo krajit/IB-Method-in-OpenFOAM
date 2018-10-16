@@ -17,7 +17,8 @@ FoamFile
 
 ddtSchemes
 {
-    default         HalfStepEuler;
+    default         Euler;
+    ddt(predictorOrCorrector,U)         HalfStepEuler;
 }
 
 gradSchemes

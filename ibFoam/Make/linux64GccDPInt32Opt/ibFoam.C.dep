@@ -784,6 +784,8 @@ createFields.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createPhi.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
+predictor.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/continuityErrs.H \
+corrector.H \
 
 

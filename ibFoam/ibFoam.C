@@ -89,6 +89,8 @@ int main(int argc, char *argv[])
 
         #include "predictor.H"
 
+        #include "corrector.H"
+
         runTime.write();
 
         runTime.printExecutionTime(Info);

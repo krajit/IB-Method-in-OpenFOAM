@@ -225,7 +225,7 @@ bool Foam::functionObjects::interpolateOnCloudOfPoints::execute()
 
         }
 				 
-        Info<<"Velocity at the probe point is "<<"  "<<velocity<<" "<<"point"<<current_pointcloud_[i]<<endl;
+        //        Info<<"Velocity at the probe point is "<<"  "<<velocity<<" "<<"point"<<current_pointcloud_[i]<<endl;
 
         //MOVE THE POINT FOR THE FIRST TIME STEP//
 
@@ -244,7 +244,7 @@ bool Foam::functionObjects::interpolateOnCloudOfPoints::execute()
     forAll(area_,i)                                     ///For loop runs over each element
     {
 
-        Info<<"element"<<i<<endl;
+        //Info<<"element"<<i<<endl;
 
         //Coordinates of reference triangle:
         vector  s0=pointcloud_[connectivity_matrix_[i][0]];   
@@ -284,8 +284,8 @@ bool Foam::functionObjects::interpolateOnCloudOfPoints::execute()
         a1=(1.0/(det(s)))*a1;
                      
 
-        Info<<"def_grad"<<a0<<endl;
-        Info<<"def_grad"<<a1<<endl;
+        //        Info<<"def_grad"<<a0<<endl;
+        //Info<<"def_grad"<<a1<<endl;
 
         //Piola Kirchoff Stress:
 

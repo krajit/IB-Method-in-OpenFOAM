@@ -364,6 +364,9 @@ HalfStepEulerDdtScheme<Type>::fvmDdt
 }
 
 
+
+
+
 template<class Type>
 tmp<fvMatrix<Type>>
 HalfStepEulerDdtScheme<Type>::fvmDdt
@@ -372,6 +375,7 @@ HalfStepEulerDdtScheme<Type>::fvmDdt
     const GeometricField<Type, fvPatchField, volMesh>& vf
 )
 {
+
     tmp<fvMatrix<Type>> tfvm
     (
         new fvMatrix<Type>
@@ -382,21 +386,54 @@ HalfStepEulerDdtScheme<Type>::fvmDdt
     );
     fvMatrix<Type>& fvm = tfvm.ref();
 
-    scalar rDeltaT = 2.0/mesh().time().deltaTValue();
-
-    fvm.diag() = rDeltaT*rho.value()*mesh().Vsc();
-
-    if (mesh().moving())
+    
+    // check if you are running a predictor or a corrector step
+    if (rho.value() < 0)
     {
-        fvm.source() = rDeltaT
-            *rho.value()*vf.oldTime().primitiveField()*mesh().Vsc0();
+        // predictor half step
+
+        Info << "Running predictor step" << endl;
+
+        scalar rDeltaT = 2.0/mesh().time().deltaTValue();
+
+        fvm.diag() = rDeltaT*rho.value()*mesh().Vsc();
+
+        if (mesh().moving())
+        {
+            fvm.source() = rDeltaT
+                *rho.value()*vf.oldTime().primitiveField()*mesh().Vsc0();
+        }
+        else
+        {
+            fvm.source() = rDeltaT
+                *rho.value()*vf.oldTime().primitiveField()*mesh().Vsc();
+        }
+
+
     }
     else
     {
-        fvm.source() = rDeltaT
-            *rho.value()*vf.oldTime().primitiveField()*mesh().Vsc();
-    }
 
+        Info << "Running corrector step" << endl;
+        
+        // corrector full step with old old time
+         scalar rDeltaT = 1.0/mesh().time().deltaTValue();
+
+        fvm.diag() = rDeltaT*rho.value()*mesh().Vsc();
+
+        if (mesh().moving())
+        {
+            fvm.source() = rDeltaT
+                *rho.value()*vf.oldTime().oldTime().primitiveField()*mesh().Vsc0();
+        }
+        else
+        {
+            fvm.source() = rDeltaT
+                *rho.value()*vf.oldTime().oldTime().primitiveField()*mesh().Vsc();
+        }
+
+    }
+    
     return tfvm;
 }
 

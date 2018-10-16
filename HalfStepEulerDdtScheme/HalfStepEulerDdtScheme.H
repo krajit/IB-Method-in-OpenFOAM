@@ -1,11 +1,11 @@
 /*---------------------------------------------------------------------------*\
-  =========                 |
-  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     |
+    =========                 |
+    \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+    \\    /   O peration     |
     \\  /    A nd           | Copyright (C) 2011-2016 OpenFOAM Foundation
-     \\/     M anipulation  |
--------------------------------------------------------------------------------
-License
+    \\/     M anipulation  |
+    -------------------------------------------------------------------------------
+    License
     This file is part of OpenFOAM.
 
     OpenFOAM is free software: you can redistribute it and/or modify it
@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 
-\*---------------------------------------------------------------------------*/
+    \*---------------------------------------------------------------------------*/
 
 #ifndef HalfStepEulerDdtScheme_H
 #define HalfStepEulerDdtScheme_H
@@ -40,8 +40,8 @@ namespace fv
 {
 
 /*---------------------------------------------------------------------------*\
-                       Class HalfStepEulerDdtScheme Declaration
-\*---------------------------------------------------------------------------*/
+    Class HalfStepEulerDdtScheme Declaration
+    \*---------------------------------------------------------------------------*/
 
 template<class Type>
 class HalfStepEulerDdtScheme
@@ -50,11 +50,11 @@ class HalfStepEulerDdtScheme
 {
     // Private Member Functions
 
-        //- No copy construct
-        HalfStepEulerDdtScheme(const HalfStepEulerDdtScheme&) = delete;
+    //- No copy construct
+    HalfStepEulerDdtScheme(const HalfStepEulerDdtScheme&) = delete;
 
-        //- No copy assignment
-        void operator=(const HalfStepEulerDdtScheme&) = delete;
+    //- No copy assignment
+    void operator=(const HalfStepEulerDdtScheme&) = delete;
 
 
 public:
@@ -65,117 +65,118 @@ public:
 
     // Constructors
 
-        //- Construct from mesh
-        HalfStepEulerDdtScheme(const fvMesh& mesh)
+    //- Construct from mesh
+    HalfStepEulerDdtScheme(const fvMesh& mesh)
         :
-            ddtScheme<Type>(mesh)
+        ddtScheme<Type>(mesh)
         {}
 
-        //- Construct from mesh and Istream
-        HalfStepEulerDdtScheme(const fvMesh& mesh, Istream& is)
+    //- Construct from mesh and Istream
+    HalfStepEulerDdtScheme(const fvMesh& mesh, Istream& is)
         :
-            ddtScheme<Type>(mesh, is)
+        ddtScheme<Type>(mesh, is)
         {}
 
 
     // Member Functions
 
-        //- Return mesh reference
-        const fvMesh& mesh() const
+    //- Return mesh reference
+    const fvMesh& mesh() const
         {
             return fv::ddtScheme<Type>::mesh();
         }
 
-        tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
-        (
-            const dimensioned<Type>&
-        );
+    tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
+    (
+        const dimensioned<Type>&
+    );
 
-        tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
-        (
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
+    (
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 
-        tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
-        (
-            const dimensionedScalar&,
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
+    (
+        const dimensionedScalar&,
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 
-        tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
-        (
-            const volScalarField&,
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
+    (
+        const volScalarField&,
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 
-        tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
-        (
-            const volScalarField& alpha,
-            const volScalarField& rho,
-            const GeometricField<Type, fvPatchField, volMesh>& psi
-        );
+    tmp<GeometricField<Type, fvPatchField, volMesh>> fvcDdt
+    (
+        const volScalarField& alpha,
+        const volScalarField& rho,
+        const GeometricField<Type, fvPatchField, volMesh>& psi
+    );
 
-        tmp<GeometricField<Type, fvsPatchField, surfaceMesh>> fvcDdt
-        (
-            const GeometricField<Type, fvsPatchField, surfaceMesh>&
-        );
+    tmp<GeometricField<Type, fvsPatchField, surfaceMesh>> fvcDdt
+    (
+        const GeometricField<Type, fvsPatchField, surfaceMesh>&
+    );
 
-        tmp<fvMatrix<Type>> fvmDdt
-        (
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    tmp<fvMatrix<Type>> fvmDdt
+    (
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 
-        tmp<fvMatrix<Type>> fvmDdt
-        (
-            const dimensionedScalar&,
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    
+    tmp<fvMatrix<Type>> fvmDdt
+    (
+        const dimensionedScalar&,
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 
-        tmp<fvMatrix<Type>> fvmDdt
-        (
-            const volScalarField&,
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    tmp<fvMatrix<Type>> fvmDdt
+    (
+        const volScalarField&,
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 
-        tmp<fvMatrix<Type>> fvmDdt
-        (
-            const volScalarField& alpha,
-            const volScalarField& rho,
-            const GeometricField<Type, fvPatchField, volMesh>& psi
-        );
+    tmp<fvMatrix<Type>> fvmDdt
+    (
+        const volScalarField& alpha,
+        const volScalarField& rho,
+        const GeometricField<Type, fvPatchField, volMesh>& psi
+    );
 
-        typedef typename ddtScheme<Type>::fluxFieldType fluxFieldType;
+    typedef typename ddtScheme<Type>::fluxFieldType fluxFieldType;
 
-        tmp<fluxFieldType> fvcDdtUfCorr
-        (
-            const GeometricField<Type, fvPatchField, volMesh>& U,
-            const GeometricField<Type, fvsPatchField, surfaceMesh>& Uf
-        );
+    tmp<fluxFieldType> fvcDdtUfCorr
+    (
+        const GeometricField<Type, fvPatchField, volMesh>& U,
+        const GeometricField<Type, fvsPatchField, surfaceMesh>& Uf
+    );
 
-        tmp<fluxFieldType> fvcDdtPhiCorr
-        (
-            const GeometricField<Type, fvPatchField, volMesh>& U,
-            const fluxFieldType& phi
-        );
+    tmp<fluxFieldType> fvcDdtPhiCorr
+    (
+        const GeometricField<Type, fvPatchField, volMesh>& U,
+        const fluxFieldType& phi
+    );
 
-        tmp<fluxFieldType> fvcDdtUfCorr
-        (
-            const volScalarField& rho,
-            const GeometricField<Type, fvPatchField, volMesh>& U,
-            const GeometricField<Type, fvsPatchField, surfaceMesh>& Uf
-        );
+    tmp<fluxFieldType> fvcDdtUfCorr
+    (
+        const volScalarField& rho,
+        const GeometricField<Type, fvPatchField, volMesh>& U,
+        const GeometricField<Type, fvsPatchField, surfaceMesh>& Uf
+    );
 
-        tmp<fluxFieldType> fvcDdtPhiCorr
-        (
-            const volScalarField& rho,
-            const GeometricField<Type, fvPatchField, volMesh>& U,
-            const fluxFieldType& phi
-        );
+    tmp<fluxFieldType> fvcDdtPhiCorr
+    (
+        const volScalarField& rho,
+        const GeometricField<Type, fvPatchField, volMesh>& U,
+        const fluxFieldType& phi
+    );
 
-        tmp<surfaceScalarField> meshPhi
-        (
-            const GeometricField<Type, fvPatchField, volMesh>&
-        );
+    tmp<surfaceScalarField> meshPhi
+    (
+        const GeometricField<Type, fvPatchField, volMesh>&
+    );
 };
 
 
@@ -221,7 +222,7 @@ tmp<surfaceScalarField> HalfStepEulerDdtScheme<scalar>::fvcDdtPhiCorr
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #ifdef NoRepository
-    #include "HalfStepEulerDdtScheme.C"
+#include "HalfStepEulerDdtScheme.C"
 #endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
